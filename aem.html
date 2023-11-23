@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video Page</title>
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  .logo {
+    float: left;
+    padding: 10px 20px; /* Adjust padding as needed */
+  }
+  .logo img {
+    height: 40px; /* Adjust size as needed */
+  }
+  nav {
+    width: 100%;
+    background-color: #fff; /* Changed to white */
+    overflow: auto;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional: added some shadow for depth */
+  }
+  nav a {
+    float: left;
+    padding: 20px 30px; /* Increased padding for wider nav items */
+    text-decoration: none;
+    font-size: 17px;
+    color: black; /* Changed to black */
+    font-family: 'Helvetica Neue LT W1G', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: var(--nuetral-text, #222);
+text-align: center;
+
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px; /* 150% */
+
+  }
+  nav a:hover {
+    background-color: #f2f2f2; /* Light gray for hover */
+  }
+  .video-container {
+    
+    width: 95%;
+    height: calc(100% - 64px); /* Adjusted the height considering the new nav height */
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-top: 2px;
+    margin-left: 30px;
+  }
+  .video-overlay {
+    margin-left: -290px;
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1010px;
+  height: 783px;
+  background-color: #E71316;
+  opacity: 0.9;
+  /* backdrop-filter: blur(17px); */
+  clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  
+  }
+  .text-light {
+   
+  color: #FFF;
+  font-family: 'Helvetica Neue LT W1G', sans-serif;
+  font-size: 54px;
+  font-weight: 300; /* Lighter font */
+  line-height: 75px; /* Adjusted line height */
+}
+
+.text-bold {
+    
+  color: #FFF;
+  font-family: 'Helvetica Neue LT W1G', sans-serif;
+  font-size: 54px;
+  font-weight: 700; /* Bold font */
+  line-height: 75px; /* Adjusted line height */
+}
+
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .info-container {
+    width: 95%;
+    height: 262px;
+    flex-shrink: 0;
+    border-radius: 0px 0px 8px 8px;
+    background: #222; /* Replace with var(--neutral-text, #222) if you have CSS variables defined */
+    position: relative; /* Set position relative for absolute child positioning */
+    margin-top: -5px;
+    margin-left: 30px; /* Adjust as necessary to align with the bottom of the video */
+  }
+
+  .side-panel {
+    width: 421px;
+    height: 262px;
+    flex-shrink: 0;
+    border-radius: 0px 0px 8px 0px;
+    background: #00677F; /* Replace with var(--accent-teal, #00677F) if you have CSS variables defined */
+    position: absolute; /* Absolute position within the relative parent */
+    top: 0; /* Align to top of parent */
+    right: 0; /* Align to right of parent */
+  }
+  .card {
+  width: 1160px;
+  height: 408px;
+  flex-shrink: 0;
+  border-radius: 0px 8px 8px 8px;
+  /* opacity: 0.3; */
+  background: #dfd5d5; /* Replace with var(--primary-white, #FFF) if you have CSS variables defined */
+  margin: 20px auto; /* Center card horizontally and add some space on top */
+  position: relative; /* To position the image absolute relative to the card */
+}
+
+.sticked-pic {
+  position: absolute;
+  right: 0; /* Sticks to the right */
+  top: 50%; /* Center it vertically */
+  transform: translateY(-50%); /* Center it vertically */
+  height: auto; /* Keep the aspect ratio */
+  max-height: 100%; /* Make sure it doesn't overflow the card */
+}
+.sticked-pic-left {
+  position: absolute;
+  left: 0; /* Sticks to the left */
+  top: 50%; /* Center it vertically */
+  transform: translateY(-50%); /* Center it vertically */
+  height: auto; /* Keep the aspect ratio */
+  max-height: 100%; /* Make sure it doesn't overflow the card */
+}
+.additional-div {
+    width: 1158px;
+    height: 345px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    opacity: 0.6;
+    background: #262262; /* Replace with var(--accent-navy, #262262) if you have CSS variables defined */
+    margin: 20px auto; /* Center div horizontally and add some space on top and bottom */
+  }
+
+/* Style for the parent div */
+.large-div {
+    margin-left: 30px;
+  width: 95%;
+  height: 491px;
+
+  border-radius: 0px 8px 8px 8px;
+  opacity: 0.3;
+  background: #EBEBEC; /* Replace with var(--neutral-8, #EBEBEC) if using CSS variables */
+ 
+  display: flex; /* Layout the child divs in a row */
+  justify-content: center; /* Center the child divs horizontally */
+  gap: 20px; /* Space between child divs */
+}
+
+/* Style for the child divs on the left */
+.inner-div {
+    margin-left: -80px;
+    margin-top: 50px;
+  width: 221px;
+  height: 277px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  border: 1px solid #EBEBEC; /* Replace with var(--neutral-8, #EBEBEC) if using CSS variables */
+  background: #FFF;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+ 
+}
+.inner-div2 {
+    
+    margin-top: 50px;
+  width: 221px;
+  height: 277px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  border: 1px solid #EBEBEC; /* Replace with var(--neutral-8, #EBEBEC) if using CSS variables */
+  background: #FFF;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+ 
+}
+
+/* Style for the child div on the right */
+.right-div {
+    margin-top: 50px;
+  display: flex;
+  width: 670px;
+  height: 277px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border: 1px solid #EBEBEC; /* Replace with var(--neutral-8, #EBEBEC) if using CSS variables */
+  background: #FFF;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.blue-div{
+    margin-top: 50px;
+    margin-left: 80px;
+
+    width: 1158px;
+height: 228px;
+flex-shrink: 0;
+border-radius: 4px;
+background: var(--accent-navy, #262262);
+}
+
+
+ 
+</style>
+</head>
+<body>
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">
+        <img src="logo.svg" alt="Logo">
+      </div>
+  <a href="#">Sustainability</a>
+  <a href="#">Investor</a>
+  <a href="#">NewsRoom</a>
+  <a href="#">Careers</a>
+  <a href="#">About</a>
+</nav>
+
+<div class="video-container">
+  <video autoplay loop muted>
+    <source src="abc.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="video-overlay">
+    <span class="text-light">
+      To enable<br>
+      our customers<br>
+      to make the world<br>
+    </span>
+    <span class="text-bold">
+      healthier, cleaner<br>
+      &amp; safer
+    </span>
+  </div>
+  
+</div>
+<div class="info-container">
+    <!-- New nested div inside the info container -->
+    <div class="side-panel">
+      <!-- Content for the side panel goes here -->
+    </div>
+  </div>
+  <div class="card">
+    <img src="rec.png" alt="Rectangle Picture" class="sticked-pic">
+    <!-- Content for the card goes here -->
+  </div>
+
+  <div class="card">
+    <img src="rec.png" alt="Rectangle Picture" class="sticked-pic-left">
+    <!-- Content for the card goes here -->
+  </div>
+  <div class="additional-div">
+    <!-- Content for the additional div goes here -->
+  </div>
+
+
+  <!-- Parent Div -->
+  <div class="large-div">
+    <!-- Inner divs are nested within the large-div container -->
+    <div class="inner-div">
+      <!-- Content for the inner-div goes here -->
+    </div>
+    <div class="inner-div2">
+      <!-- Content for the second inner-div goes here -->
+    </div>
+    <div class="right-div">
+      <!-- Content for the right-div goes here -->
+    </div>
+  </div>
+
+  <div class="blue-div" ></div>
+  
+  
+</body>
+</html>
